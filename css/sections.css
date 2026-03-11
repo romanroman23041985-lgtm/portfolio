@@ -549,8 +549,35 @@
         display: block;
     }
 
+    .hero__content {
+        position: relative;
+        z-index: 10;
+    }
+
     .hero__float {
-        display: none;
+        /* Keep visible, but push to edges and scale down greatly */
+        transform: scale(0.5);
+        opacity: 0.8;
+    }
+
+    .hero__float--1 {
+        top: 2%;
+        left: -15%;
+    }
+
+    .hero__float--2 {
+        top: 15%;
+        right: -10%;
+    }
+
+    .hero__float--3 {
+        bottom: 25%;
+        left: -15%;
+    }
+
+    .hero__float--4 {
+        bottom: 5%;
+        right: -10%;
     }
 
     .about__grid {

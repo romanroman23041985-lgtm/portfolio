@@ -34,6 +34,10 @@
 html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    /* Prevent font scaling on orientation change */
+    /* Enhance touch experience */
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -46,6 +50,7 @@ body {
 }
 
 /* ── ANIMATED GRADIENT BACKGROUND ── */
+/* ── ANIMATED GRADIENT BACKGROUND (NEUTRAL) ── */
 .bg-gradient {
     position: fixed;
     top: 0;
@@ -53,9 +58,10 @@ body {
     width: 100vw;
     height: 100vh;
     z-index: -2;
-    background: linear-gradient(-45deg, #e0eafc, #cfdef3, #e0c3fc, #8ec5fc);
+    /* Soft, neutral slate/gray/silver gradient */
+    background: linear-gradient(-45deg, #e2e8f0, #f8fafc, #cbd5e1, #e2e8f0);
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    animation: gradientBG 20s ease infinite;
 }
 
 @keyframes gradientBG {
@@ -306,6 +312,10 @@ ul {
 
 .glass-btn:active {
     transform: scale(0.97) translateY(0);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5),
+        inset 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 
@@ -541,4 +551,27 @@ ul {
 
 .reveal-stagger>.reveal:nth-child(8) {
     --rd: 560ms;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE DESIGN (Mobile / Tablets)
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .section {
+        padding: clamp(3rem, 8vh, 6rem) clamp(1rem, 4vw, 2rem);
+    }
+
+    .glass-panel {
+        padding: 1.5rem;
+        /* Slightly reduce blur on mobile for performance and readability */
+        backdrop-filter: blur(32px) saturate(160%);
+        -webkit-backdrop-filter: blur(32px) saturate(160%);
+    }
+
+    .glass-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+        width: 100%;
+        /* Full width buttons on mobile */
+    }
 }
