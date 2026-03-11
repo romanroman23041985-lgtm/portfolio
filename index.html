@@ -32,10 +32,11 @@
         </svg>
       </button>
       <div class="nav__links" role="menubar">
-        <a href="#about" class="nav__link" role="menuitem">Обо мне</a>
-        <a href="#projects" class="nav__link" role="menuitem">Проекты</a>
-        <a href="#services" class="nav__link" role="menuitem">Услуги</a>
-        <a href="#contact" class="nav__link" role="menuitem">Контакты</a>
+        <a href="#about" class="nav__link" role="menuitem" data-ru="Обо мне" data-en="About">Обо мне</a>
+        <a href="#projects" class="nav__link" role="menuitem" data-ru="Проекты" data-en="Projects">Проекты</a>
+        <a href="#services" class="nav__link" role="menuitem" data-ru="Услуги" data-en="Services">Услуги</a>
+        <a href="#contact" class="nav__link" role="menuitem" data-ru="Контакты" data-en="Contact">Контакты</a>
+        <!-- Lang toggle is auto-injected by lang-switch.js -->
       </div>
     </div>
   </nav>
@@ -53,31 +54,29 @@
       <div class="glass-panel reveal" style="padding: clamp(2rem, 5vw, 3.5rem);">
         <div class="hero__badge glass-pill">
           <span class="dot" aria-hidden="true"></span>
-          Открыт к новым проектам
+          <span data-ru="Открыт к новым проектам" data-en="Open to new projects">Открыт к новым проектам</span>
         </div>
 
         <h1 class="hero__title">
-          Помогаю собирать<br>
-          <em>AI-автоматизацию</em>
+          <span data-ru="Помогаю собирать" data-en="I build practical">Помогаю собирать</span><br>
+          <em data-ru="AI-автоматизацию" data-en="AI automation">AI-автоматизацию</em>
         </h1>
 
-        <p class="hero__subtitle">
+        <p class="hero__subtitle"
+          data-ru="Telegram-системы и контент-пайплайны, которые упрощают работу и масштабируют процессы. n8n · Python · Telegram API · AI tools."
+          data-en="Telegram systems and content pipelines that simplify work and scale processes. n8n · Python · Telegram API · AI tools.">
           Telegram-системы и контент-пайплайны, которые упрощают работу
           и масштабируют процессы. n8n · Python · Telegram API · AI tools.
         </p>
 
         <div class="hero__actions">
           <a href="#projects" class="glass-btn glass-btn--blue glass-btn--lg">
-            <span>
+            <span data-ru="Смотреть проекты" data-en="View Projects">
               Смотреть проекты
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" />
-              </svg>
             </span>
           </a>
           <a href="#contact" class="glass-btn glass-btn--lg">
-            <span>Связаться</span>
+            <span data-ru="Связаться" data-en="Get in Touch">Связаться</span>
           </a>
         </div>
       </div>
@@ -97,46 +96,54 @@
       </div>
 
       <div class="about__text reveal" style="--rd: 100ms;">
-        <h2>Обо мне</h2>
-        <p>
+        <h2 data-ru="Обо мне" data-en="About Me">Обо мне</h2>
+        <p data-ru="Я занимаюсь разработкой AI-автоматизации и интеграцией сложных workflow в понятные, устойчивые процессы. Обычно это задачи, где нужно связать несколько сервисов, добавить AI-логику, убрать ручные действия и сделать систему, с которой можно нормально работать каждый день."
+          data-en="I develop AI automation and integrate complex workflows into clear, sustainable processes. Usually these are tasks where you need to connect multiple services, add AI logic, remove manual actions and build a system you can work with every day.">
           Я занимаюсь разработкой AI-автоматизации и интеграцией сложных workflow
           в понятные, устойчивые процессы. Обычно это задачи, где нужно связать
           несколько сервисов, добавить AI-логику, убрать ручные действия и сделать
           систему, с которой можно нормально работать каждый день.
         </p>
-        <p>
+        <p data-ru="Мой основной стек — n8n для оркестрации процессов и Python для нестандартной логики, обработки данных, API-интеграций и контроля качества на важных этапах."
+          data-en="My core stack is n8n for process orchestration and Python for custom logic, data processing, API integrations, and quality control at critical stages.">
           Мой основной стек — n8n для оркестрации процессов и Python для нестандартной
           логики, обработки данных, API-интеграций и контроля качества на важных этапах.
         </p>
-        <p>
+        <p data-ru="Мне нравится собирать системы, которые не просто выглядят интересно на демо, а реально помогают: экономят время, снижают ручную нагрузку и упрощают дальнейший рост проекта."
+          data-en="I enjoy building systems that don't just look impressive in a demo but actually help: saving time, reducing manual workload, and simplifying further project growth.">
           Мне нравится собирать системы, которые не просто выглядят интересно на демо,
           а реально помогают: экономят время, снижают ручную нагрузку и упрощают
           дальнейший рост проекта.
         </p>
 
         <div class="about__skills reveal-stagger">
-          <span class="glass-pill reveal">🤖 AI Agents</span>
-          <span class="glass-pill reveal">⚡ n8n Automation</span>
-          <span class="glass-pill reveal">🧠 LLM Workflows</span>
-          <span class="glass-pill reveal">🔗 API Integrations</span>
-          <span class="glass-pill reveal">📊 Data Processing</span>
-          <span class="glass-pill reveal">💬 Telegram Bots</span>
+          <span class="glass-pill reveal" data-ru="🤖 AI-агенты" data-en="🤖 AI Agents">🤖 AI-агенты</span>
+          <span class="glass-pill reveal" data-ru="⚡ n8n-автоматизация" data-en="⚡ n8n Automation">⚡
+            n8n-автоматизация</span>
+          <span class="glass-pill reveal" data-ru="🧠 LLM-процессы" data-en="🧠 LLM Workflows">🧠 LLM-процессы</span>
+          <span class="glass-pill reveal" data-ru="🔗 API-интеграции" data-en="🔗 API Integrations">🔗
+            API-интеграции</span>
+          <span class="glass-pill reveal" data-ru="📊 Обработка данных" data-en="📊 Data Processing">📊 Обработка
+            данных</span>
+          <span class="glass-pill reveal" data-ru="💬 Telegram-боты" data-en="💬 Telegram Bots">💬 Telegram-боты</span>
           <span class="glass-pill reveal">🐍 Python</span>
-          <span class="glass-pill reveal">🎬 Content Systems</span>
+          <span class="glass-pill reveal" data-ru="🎬 Контент-системы" data-en="🎬 Content Systems">🎬
+            Контент-системы</span>
         </div>
 
         <div class="about__stat-row reveal" style="--rd: 200ms;">
           <div class="glass-panel about__stat" style="padding: 1rem;">
             <div class="about__stat-value">10,000+</div>
-            <div class="about__stat-label">видео/мес</div>
+            <div class="about__stat-label" data-ru="видео/мес" data-en="videos/mo">видео/мес</div>
           </div>
           <div class="glass-panel about__stat" style="padding: 1rem;">
             <div class="about__stat-value">10+</div>
-            <div class="about__stat-label">ботов и каналов</div>
+            <div class="about__stat-label" data-ru="ботов и каналов" data-en="bots & channels">ботов и каналов</div>
           </div>
           <div class="glass-panel about__stat" style="padding: 1rem;">
             <div class="about__stat-value">E2E</div>
-            <div class="about__stat-label">workflow опыт</div>
+            <div class="about__stat-label" data-ru="опыт полного цикла" data-en="workflow experience">опыт полного цикла
+            </div>
           </div>
         </div>
       </div>
@@ -144,11 +151,13 @@
   </section>
 
 
-  <!-- ═══ WHAT I DO (Services Overview) ═══ -->
+  <!-- ═══ WHAT I DO ═══ -->
   <section class="projects section" id="services" aria-label="Что я делаю">
     <div class="projects__header reveal">
-      <h2>Что я делаю</h2>
-      <p>Основные направления, в которых я работаю и приношу пользу проектам.</p>
+      <h2 data-ru="Что я делаю" data-en="What I Do">Что я делаю</h2>
+      <p data-ru="Основные направления, в которых я работаю и приношу пользу проектам."
+        data-en="Core areas where I work and deliver value to projects.">Основные направления, в которых я работаю и
+        приношу пользу проектам.</p>
     </div>
 
     <div class="projects__grid reveal-stagger">
@@ -161,9 +170,13 @@
           </svg>
         </div>
         <div class="project-card__body">
-          <h3 class="project-card__title">AI Automation для бизнеса</h3>
-          <p class="project-card__desc">Собираю workflow, которые автоматизируют рутинные операции, связывают сервисы
-            между собой, обрабатывают данные и встраивают AI в реальный рабочий процесс.</p>
+          <h3 class="project-card__title" data-ru="AI-автоматизация для бизнеса" data-en="AI Automation for Business">
+            AI-автоматизация для бизнеса</h3>
+          <p class="project-card__desc"
+            data-ru="Собираю workflow, которые автоматизируют рутинные операции, связывают сервисы между собой, обрабатывают данные и встраивают AI в реальный рабочий процесс."
+            data-en="I build workflows that automate routine operations, connect services together, process data, and integrate AI into real business processes.">
+            Собираю workflow, которые автоматизируют рутинные операции, связывают сервисы между собой, обрабатывают
+            данные и встраивают AI в реальный рабочий процесс.</p>
         </div>
       </div>
 
@@ -175,9 +188,13 @@
           </svg>
         </div>
         <div class="project-card__body">
-          <h3 class="project-card__title">Telegram-боты и AI-системы</h3>
-          <p class="project-card__desc">Проектирую Telegram-экосистемы: боты, внутренние сценарии, AI-ответы,
-            маршрутизацию задач, уведомления, интеграции и многошаговые процессы.</p>
+          <h3 class="project-card__title" data-ru="Telegram-боты и AI-системы" data-en="Telegram Bots & AI Systems">
+            Telegram-боты и AI-системы</h3>
+          <p class="project-card__desc"
+            data-ru="Проектирую Telegram-экосистемы: боты, внутренние сценарии, AI-ответы, маршрутизацию задач, уведомления, интеграции и многошаговые процессы."
+            data-en="I design Telegram ecosystems: bots, internal scenarios, AI responses, task routing, notifications, integrations, and multi-step processes.">
+            Проектирую Telegram-экосистемы: боты, внутренние сценарии, AI-ответы, маршрутизацию задач, уведомления,
+            интеграции и многошаговые процессы.</p>
         </div>
       </div>
 
@@ -190,10 +207,12 @@
           </svg>
         </div>
         <div class="project-card__body">
-          <h3 class="project-card__title">Контент-пайплайны</h3>
-          <p class="project-card__desc">Создаю системы для производства контента: от подготовки материалов и сценариев
-            до
-            визуалов, озвучки, субтитров и финальной сборки. Особенно полезно для short-form форматов.</p>
+          <h3 class="project-card__title" data-ru="Контент-пайплайны" data-en="Content Pipelines">Контент-пайплайны</h3>
+          <p class="project-card__desc"
+            data-ru="Создаю системы для производства контента: от подготовки материалов и сценариев до визуалов, озвучки, субтитров и финальной сборки. Особенно полезно для short-form форматов."
+            data-en="I create content production systems: from material prep and scripts to visuals, voiceover, subtitles, and final assembly. Especially useful for short-form formats.">
+            Создаю системы для производства контента: от подготовки материалов и сценариев до визуалов, озвучки,
+            субтитров и финальной сборки. Особенно полезно для short-form форматов.</p>
         </div>
       </div>
 
@@ -206,9 +225,13 @@
           </svg>
         </div>
         <div class="project-card__body">
-          <h3 class="project-card__title">Python для сложной логики</h3>
-          <p class="project-card__desc">Использую Python там, где нужны нестандартные интеграции, обработка JSON,
-            нормализация данных, фильтрация, валидация и кастомные сценарии поверх automation-слоя.</p>
+          <h3 class="project-card__title" data-ru="Python для сложной логики" data-en="Python for Complex Logic">Python
+            для сложной логики</h3>
+          <p class="project-card__desc"
+            data-ru="Использую Python там, где нужны нестандартные интеграции, обработка JSON, нормализация данных, фильтрация, валидация и кастомные сценарии поверх automation-слоя."
+            data-en="I use Python where custom integrations, JSON processing, data normalization, filtering, validation, and custom scenarios on top of the automation layer are needed.">
+            Использую Python там, где нужны нестандартные интеграции, обработка JSON, нормализация данных, фильтрация,
+            валидация и кастомные сценарии поверх automation-слоя.</p>
         </div>
       </div>
     </div>
@@ -219,24 +242,30 @@
   <section class="about section" aria-label="Технологии">
     <div class="about__grid" style="grid-template-columns: 1fr;">
       <div class="about__text reveal">
-        <h2>Технологии</h2>
+        <h2 data-ru="Технологии" data-en="Technologies">Технологии</h2>
         <div class="about__skills reveal-stagger" style="margin-top: 1.5rem;">
           <span class="glass-pill reveal">🔧 n8n</span>
-          <span class="glass-pill reveal">🪝 Webhooks</span>
-          <span class="glass-pill reveal">🔗 API Integrations</span>
-          <span class="glass-pill reveal">🧠 LLM Workflows</span>
-          <span class="glass-pill reveal">✍️ Prompt Design</span>
-          <span class="glass-pill reveal">🤖 AI Agents</span>
+          <span class="glass-pill reveal" data-ru="🪝 Вебхуки" data-en="🪝 Webhooks">🪝 Вебхуки</span>
+          <span class="glass-pill reveal" data-ru="🔗 API-интеграции" data-en="🔗 API Integrations">🔗
+            API-интеграции</span>
+          <span class="glass-pill reveal" data-ru="🧠 LLM-процессы" data-en="🧠 LLM Workflows">🧠 LLM-процессы</span>
+          <span class="glass-pill reveal" data-ru="✍️ Промпт-дизайн" data-en="✍️ Prompt Design">✍️ Промпт-дизайн</span>
+          <span class="glass-pill reveal" data-ru="🤖 AI-агенты" data-en="🤖 AI Agents">🤖 AI-агенты</span>
           <span class="glass-pill reveal">🐍 Python</span>
-          <span class="glass-pill reveal">📦 JSON Processing</span>
-          <span class="glass-pill reveal">✅ Data Validation</span>
+          <span class="glass-pill reveal" data-ru="📦 Обработка JSON" data-en="📦 JSON Processing">📦 Обработка
+            JSON</span>
+          <span class="glass-pill reveal" data-ru="✅ Валидация данных" data-en="✅ Data Validation">✅ Валидация
+            данных</span>
           <span class="glass-pill reveal">💬 Telegram Bot API</span>
-          <span class="glass-pill reveal">🔔 Notifications</span>
-          <span class="glass-pill reveal">🎬 AI Video/TTS</span>
-          <span class="glass-pill reveal">📝 Subtitles</span>
+          <span class="glass-pill reveal" data-ru="🔔 Уведомления" data-en="🔔 Notifications">🔔 Уведомления</span>
+          <span class="glass-pill reveal" data-ru="🎬 AI-видео/озвучка" data-en="🎬 AI Video/TTS">🎬
+            AI-видео/озвучка</span>
+          <span class="glass-pill reveal" data-ru="📝 Субтитры" data-en="📝 Subtitles">📝 Субтитры</span>
           <span class="glass-pill reveal">💎 TON / Web3</span>
-          <span class="glass-pill reveal">🏗️ Modular Architecture</span>
-          <span class="glass-pill reveal">🚀 Scalable Pipelines</span>
+          <span class="glass-pill reveal" data-ru="🏗️ Модульная архитектура" data-en="🏗️ Modular Architecture">🏗️
+            Модульная архитектура</span>
+          <span class="glass-pill reveal" data-ru="🚀 Масштабируемые пайплайны" data-en="🚀 Scalable Pipelines">🚀
+            Масштабируемые пайплайны</span>
         </div>
       </div>
     </div>
@@ -246,8 +275,10 @@
   <!-- ═══ PROJECTS ═══ -->
   <section class="projects section" id="projects" aria-label="Проекты">
     <div class="projects__header reveal">
-      <h2>Избранные проекты</h2>
-      <p>Реальные кейсы из практики: от Telegram-экосистем до контентных конвейеров и Web3-механик.</p>
+      <h2 data-ru="Избранные проекты" data-en="Selected Projects">Избранные проекты</h2>
+      <p data-ru="Реальные кейсы из практики: от Telegram-экосистем до контентных конвейеров и Web3-механик."
+        data-en="Real cases from practice: from Telegram ecosystems to content pipelines and Web3 mechanics.">Реальные
+        кейсы из практики: от Telegram-экосистем до контентных конвейеров и Web3-механик.</p>
     </div>
 
     <div class="projects__grid reveal-stagger">
@@ -261,10 +292,13 @@
           </svg>
         </div>
         <div class="project-card__body">
-          <h3 class="project-card__title">Telegram-экосистема с AI-ролями</h3>
-          <p class="project-card__desc">Система, где несколько AI-сущностей работают в рамках одной Telegram-логики с
-            разными ролями, задачами и маршрутами обработки. Расширяемая архитектура для дальнейшего масштабирования.
-          </p>
+          <h3 class="project-card__title" data-ru="Telegram-экосистема с AI-ролями"
+            data-en="Telegram Ecosystem with AI Roles">Telegram-экосистема с AI-ролями</h3>
+          <p class="project-card__desc"
+            data-ru="Система, где несколько AI-сущностей работают в рамках одной Telegram-логики с разными ролями, задачами и маршрутами обработки. Расширяемая архитектура для дальнейшего масштабирования."
+            data-en="A system where multiple AI entities operate within a single Telegram logic with different roles, tasks, and processing routes. Extensible architecture for further scaling.">
+            Система, где несколько AI-сущностей работают в рамках одной Telegram-логики с разными ролями, задачами и
+            маршрутами обработки. Расширяемая архитектура для дальнейшего масштабирования.</p>
           <div class="project-card__tags">
             <span class="glass-pill">n8n</span>
             <span class="glass-pill">Telegram API</span>
@@ -284,9 +318,13 @@
           </svg>
         </div>
         <div class="project-card__body">
-          <h3 class="project-card__title">AI-пайплайн для short-form контента</h3>
-          <p class="project-card__desc">Контентный конвейер для коротких видео: сценарная логика, визуалы, озвучка,
-            субтитры и финальная сборка. Акцент на качество прогона и устойчивость к масштабированию.</p>
+          <h3 class="project-card__title" data-ru="AI-пайплайн для short-form контента"
+            data-en="AI Pipeline for Short-Form Content">AI-пайплайн для short-form контента</h3>
+          <p class="project-card__desc"
+            data-ru="Контентный конвейер для коротких видео: сценарная логика, визуалы, озвучка, субтитры и финальная сборка. Акцент на качество прогона и устойчивость к масштабированию."
+            data-en="A content pipeline for short videos: script logic, visuals, voiceover, subtitles, and final assembly. Focus on run quality and scalability resilience.">
+            Контентный конвейер для коротких видео: сценарная логика, визуалы, озвучка, субтитры и финальная сборка.
+            Акцент на качество прогона и устойчивость к масштабированию.</p>
           <div class="project-card__tags">
             <span class="glass-pill">AI Media</span>
             <span class="glass-pill">n8n</span>
@@ -308,13 +346,17 @@
           </svg>
         </div>
         <div class="project-card__body">
-          <h3 class="project-card__title">Система брендированных контент-каналов</h3>
-          <p class="project-card__desc">Каждый канал строится как отдельная единица со своим форматом, подачей и ролью.
-            Помогает делать узнаваемые контентные системы и масштабировать производство.</p>
+          <h3 class="project-card__title" data-ru="Система брендированных контент-каналов"
+            data-en="Branded Content Channel System">Система брендированных контент-каналов</h3>
+          <p class="project-card__desc"
+            data-ru="Каждый канал строится как отдельная единица со своим форматом, подачей и ролью. Помогает делать узнаваемые контентные системы и масштабировать производство."
+            data-en="Each channel is built as a separate unit with its own format, delivery style, and role. Helps create recognizable content systems and scale production.">
+            Каждый канал строится как отдельная единица со своим форматом, подачей и ролью. Помогает делать узнаваемые
+            контентные системы и масштабировать производство.</p>
           <div class="project-card__tags">
-            <span class="glass-pill">Content Design</span>
+            <span class="glass-pill" data-ru="Контент-дизайн" data-en="Content Design">Контент-дизайн</span>
             <span class="glass-pill">n8n</span>
-            <span class="glass-pill">AI Workflows</span>
+            <span class="glass-pill" data-ru="AI-процессы" data-en="AI Workflows">AI-процессы</span>
           </div>
         </div>
       </div>
@@ -329,13 +371,18 @@
           </svg>
         </div>
         <div class="project-card__body">
-          <h3 class="project-card__title">TON / Web3 product mechanics</h3>
-          <p class="project-card__desc">Аналитика и проектирование игровых и reward-механик для продукта в экосистеме
-            TON: расчёты, NFT-бусты, продуктовая логика и балансировка цифровых механик.</p>
+          <h3 class="project-card__title" data-ru="TON / Web3 продуктовые механики"
+            data-en="TON / Web3 Product Mechanics">TON / Web3 продуктовые механики</h3>
+          <p class="project-card__desc"
+            data-ru="Аналитика и проектирование игровых и reward-механик для продукта в экосистеме TON: расчёты, NFT-бусты, продуктовая логика и балансировка цифровых механик."
+            data-en="Analytics and design of game and reward mechanics for a product in the TON ecosystem: calculations, NFT boosts, product logic, and digital mechanics balancing.">
+            Аналитика и проектирование игровых и reward-механик для продукта в экосистеме TON: расчёты, NFT-бусты,
+            продуктовая логика и балансировка цифровых механик.</p>
           <div class="project-card__tags">
             <span class="glass-pill">TON</span>
             <span class="glass-pill">Web3</span>
-            <span class="glass-pill">Product Analytics</span>
+            <span class="glass-pill" data-ru="Продуктовая аналитика" data-en="Product Analytics">Продуктовая
+              аналитика</span>
           </div>
         </div>
       </div>
@@ -349,13 +396,18 @@
           </svg>
         </div>
         <div class="project-card__body">
-          <h3 class="project-card__title">Structured Data Processing</h3>
-          <p class="project-card__desc">Решения для извлечения, нормализации и структурирования сложных данных из
-            многоуровневых источников. AI как часть стабильного workflow с пригодным для автоматизации результатом.</p>
+          <h3 class="project-card__title" data-ru="Структурная обработка данных" data-en="Structured Data Processing">
+            Структурная обработка данных</h3>
+          <p class="project-card__desc"
+            data-ru="Решения для извлечения, нормализации и структурирования сложных данных из многоуровневых источников. AI как часть стабильного workflow с пригодным для автоматизации результатом."
+            data-en="Solutions for extracting, normalizing, and structuring complex data from multi-level sources. AI as part of a stable workflow with automation-ready output.">
+            Решения для извлечения, нормализации и структурирования сложных данных из многоуровневых источников. AI как
+            часть стабильного workflow с пригодным для автоматизации результатом.</p>
           <div class="project-card__tags">
             <span class="glass-pill">Python</span>
             <span class="glass-pill">JSON</span>
-            <span class="glass-pill">Data Normalization</span>
+            <span class="glass-pill" data-ru="Нормализация данных" data-en="Data Normalization">Нормализация
+              данных</span>
           </div>
         </div>
       </div>
@@ -368,24 +420,33 @@
   <section class="about section" aria-label="Как я работаю">
     <div class="about__grid" style="grid-template-columns: 1fr;">
       <div class="about__text reveal">
-        <h2>Как я обычно работаю</h2>
+        <h2 data-ru="Как я обычно работаю" data-en="How I Usually Work">Как я обычно работаю</h2>
 
         <div class="about__stat-row reveal" style="--rd: 100ms;">
           <div class="glass-panel about__stat" style="padding: 1.5rem;">
             <div class="about__stat-value">1</div>
-            <div class="about__stat-label">Понимаю задачу — разбираюсь, где узкое место и какой результат нужен</div>
+            <div class="about__stat-label"
+              data-ru="Понимаю задачу — разбираюсь, где узкое место и какой результат нужен"
+              data-en="Understand the task — identify bottlenecks and desired outcomes">Понимаю задачу — разбираюсь, где
+              узкое место и какой результат нужен</div>
           </div>
           <div class="glass-panel about__stat" style="padding: 1.5rem;">
             <div class="about__stat-value">2</div>
-            <div class="about__stat-label">Собираю архитектуру — определяю, что через n8n, где Python, где AI</div>
+            <div class="about__stat-label" data-ru="Собираю архитектуру — определяю, что через n8n, где Python, где AI"
+              data-en="Design architecture — decide what goes through n8n, Python, or AI">Собираю архитектуру —
+              определяю, что через n8n, где Python, где AI</div>
           </div>
           <div class="glass-panel about__stat" style="padding: 1.5rem;">
             <div class="about__stat-value">3</div>
-            <div class="about__stat-label">Делаю рабочее ядро — основной workflow, который уже решает задачу</div>
+            <div class="about__stat-label" data-ru="Делаю рабочее ядро — основной workflow, который уже решает задачу"
+              data-en="Build the core — a working workflow that already solves the problem">Делаю рабочее ядро —
+              основной workflow, который уже решает задачу</div>
           </div>
           <div class="glass-panel about__stat" style="padding: 1.5rem;">
             <div class="about__stat-value">4</div>
-            <div class="about__stat-label">Усиливаю систему — проверки, стабильность, оптимизация и масштаб</div>
+            <div class="about__stat-label" data-ru="Усиливаю систему — проверки, стабильность, оптимизация и масштаб"
+              data-en="Strengthen the system — checks, stability, optimization and scale">Усиливаю систему — проверки,
+              стабильность, оптимизация и масштаб</div>
           </div>
         </div>
       </div>
@@ -397,18 +458,26 @@
   <section class="about section" aria-label="Почему со мной удобно">
     <div class="about__grid" style="grid-template-columns: 1fr;">
       <div class="about__text reveal">
-        <h2>Почему со мной удобно работать</h2>
-        <p>
+        <h2 data-ru="Почему со мной удобно работать" data-en="Why It's Easy to Work With Me">Почему со мной удобно
+          работать</h2>
+        <p data-ru="Я стараюсь делать решения так, чтобы они были не только рабочими на старте, но и удобными в сопровождении дальше. Это обычно означает:"
+          data-en="I aim to build solutions that are not only functional from the start, but also easy to maintain going forward. This usually means:">
           Я стараюсь делать решения так, чтобы они были не только рабочими на старте,
           но и удобными в сопровождении дальше. Это обычно означает:
         </p>
         <div class="about__skills reveal-stagger" style="margin-top: 1rem;">
-          <span class="glass-pill reveal">📐 Понятная архитектура</span>
-          <span class="glass-pill reveal">🧹 Аккуратная сборка</span>
-          <span class="glass-pill reveal">✅ Контрольные точки</span>
-          <span class="glass-pill reveal">📈 Масштабируемость</span>
-          <span class="glass-pill reveal">💬 Внятная коммуникация</span>
-          <span class="glass-pill reveal">💰 Оптимизация стоимости</span>
+          <span class="glass-pill reveal" data-ru="📐 Понятная архитектура" data-en="📐 Clear Architecture">📐 Понятная
+            архитектура</span>
+          <span class="glass-pill reveal" data-ru="🧹 Аккуратная сборка" data-en="🧹 Clean Assembly">🧹 Аккуратная
+            сборка</span>
+          <span class="glass-pill reveal" data-ru="✅ Контрольные точки" data-en="✅ Checkpoints">✅ Контрольные
+            точки</span>
+          <span class="glass-pill reveal" data-ru="📈 Масштабируемость" data-en="📈 Scalability">📈
+            Масштабируемость</span>
+          <span class="glass-pill reveal" data-ru="💬 Внятная коммуникация" data-en="💬 Clear Communication">💬 Внятная
+            коммуникация</span>
+          <span class="glass-pill reveal" data-ru="💰 Оптимизация стоимости" data-en="💰 Cost Optimization">💰
+            Оптимизация стоимости</span>
         </div>
       </div>
     </div>
@@ -419,8 +488,10 @@
   <section class="contact section" id="contact" aria-label="Контакты">
     <div class="contact__wrapper">
       <div class="contact__header reveal">
-        <h2>Контакты</h2>
-        <p>Если у вас есть задача, связанная с AI-автоматизацией, Telegram-ботами, workflow orchestration,
+        <h2 data-ru="Контакты" data-en="Contact">Контакты</h2>
+        <p data-ru="Если у вас есть задача, связанная с AI-автоматизацией, Telegram-ботами, workflow orchestration, контент-системами или интеграциями — напишите. Достаточно коротко описать текущий процесс и желаемый результат."
+          data-en="If you have a task related to AI automation, Telegram bots, workflow orchestration, content systems, or integrations — write to me. A brief description of the current process and desired outcome is enough.">
+          Если у вас есть задача, связанная с AI-автоматизацией, Telegram-ботами, workflow orchestration,
           контент-системами или интеграциями — напишите. Достаточно коротко описать текущий процесс и желаемый
           результат.</p>
       </div>
@@ -430,35 +501,30 @@
           <div class="contact__form-row">
             <div>
               <label for="name" class="sr-only">Ваше имя</label>
-              <input type="text" id="name" name="name" placeholder="Ваше имя" class="glass-input" required
-                autocomplete="name" value="Roman">
+              <input type="text" id="name" name="name" class="glass-input" required autocomplete="name"
+                data-ru="Ваше имя" data-en="Your name" placeholder="Ваше имя">
             </div>
             <div>
               <label for="email" class="sr-only">Ваш email</label>
-              <input type="email" id="email" name="email" placeholder="Ваш email" class="glass-input" required
-                autocomplete="email" value="romanroman23041985@gmail.com">
+              <input type="email" id="email" name="email" class="glass-input" required autocomplete="email"
+                data-ru="Ваш email" data-en="Your email" placeholder="Ваш email">
             </div>
           </div>
           <div>
             <label for="subject" class="sr-only">Тема</label>
-            <input type="text" id="subject" name="subject" placeholder="Тема сообщения" class="glass-input"
-              value="Обсуждение проекта">
+            <input type="text" id="subject" name="subject" class="glass-input" data-ru="Тема сообщения"
+              data-en="Subject" placeholder="Тема сообщения">
           </div>
           <div>
             <label for="message" class="sr-only">Сообщение</label>
-            <textarea id="message" name="message"
-              placeholder="Опишите задачу, текущий процесс или цель автоматизации..." class="glass-input glass-textarea"
-              required></textarea>
+            <textarea id="message" name="message" class="glass-input glass-textarea" required
+              data-ru="Опишите задачу, текущий процесс или цель автоматизации..."
+              data-en="Describe your task, current process, or automation goal..."
+              placeholder="Опишите задачу, текущий процесс или цель автоматизации..."></textarea>
           </div>
           <div class="contact__submit-row">
             <button type="submit" class="glass-btn glass-btn--blue glass-btn--lg">
-              <span>
-                Отправить сообщение
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" aria-hidden="true">
-                  <path d="M14 2L7 9M14 2l-4 12-3-5-5-3z" />
-                </svg>
-              </span>
+              <span data-ru="Отправить сообщение" data-en="Send Message">Отправить сообщение</span>
             </button>
           </div>
         </form>
@@ -485,12 +551,17 @@
   </section>
 
   <footer class="footer">
-    <p>Winter.AI · AI Automation · Telegram Systems · Content Pipelines · Python Integrations</p>
+    <p data-ru="Winter.AI · AI-автоматизация · Telegram-системы · Контент-пайплайны · Python-интеграции"
+      data-en="Winter.AI · AI Automation · Telegram Systems · Content Pipelines · Python Integrations">Winter.AI ·
+      AI-автоматизация · Telegram-системы · Контент-пайплайны · Python-интеграции</p>
     <p style="margin-top: 0.5rem; opacity: 0.7;">Roman · romanroman23041985@gmail.com</p>
-    <p style="margin-top: 0.5rem; opacity: 0.5;">© 2026 Winter.AI. Built for practical automation.</p>
+    <p style="margin-top: 0.5rem; opacity: 0.5;" data-ru="© 2026 Winter.AI. Создан для практической автоматизации."
+      data-en="© 2026 Winter.AI. Built for practical automation.">© 2026 Winter.AI. Создан для практической
+      автоматизации.</p>
   </footer>
 
   <script src="js/particles.js"></script>
+  <script src="js/lang-switch.js"></script>
   <script src="js/scroll-reveal.js"></script>
   <script src="js/interactions.js"></script>
 </body>
