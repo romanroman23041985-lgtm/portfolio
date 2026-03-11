@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Glass — Material Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════
+   LIQUID GLASS — MATERIAL TEST
+   Only 2 elements: Blue pill button + Glass card.
+   Proving the physics before building the site.
+   ═══════════════════════════════════════════ */
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #dcdce2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+            padding: 60px 20px;
+            /* Background pattern image for refraction testing */
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+                radial-gradient(ellipse at 30% 50%, rgba(120, 180, 240, 0.08), transparent 50%),
+                radial-gradient(ellipse at 70% 30%, rgba(240, 120, 180, 0.06), transparent 50%);
+            background-size: 30px 30px, 30px 30px, 100% 100%, 100% 100%;
+        }
+
+        .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+
+        /* ═══════════════════════════════════════════════════════════
+   COMPONENT 1: BLUE PILL BUTTON
+   ═══════════════════════════════════════════════════════════
+   Structure:
+     .liquid-btn-wrap        — outer wrapper, holds the SVG filter + caustic glow
+       .liquid-btn            — the glass body (gradient fill + inset rim lights)
+         ::before             — specular highlight (harsh white gradient on top)
+         ::after              — shimmer sweep on hover
+         span                 — text content (above all pseudo layers)
+
+   Physics:
+     1. SVG feDisplacementMap on wrapper → distorts edge pixels
+     2. Gradient border simulated via wrapper BG showing through
+     3. Inset box-shadows for top/bottom rim lighting
+     4. ::before = sharp specular white reflection on upper surface
+     5. Outer box-shadow uses BLUE rgba → caustic colored glow
+   ═══════════════════════════════════════════════════════════ */
+
+        .liquid-btn-wrap {
+            position: relative;
+            display: inline-flex;
+            /* SVG refraction distortion on the whole button shape */
+            filter: url(#liquid-refraction);
+        }
+
+        /* The caustic glow layer — positioned behind the button.
+   This is a separate div so the filter doesn't eat the glow. */
+        .liquid-btn-wrap::after {
+            content: '';
+            position: absolute;
+            /* Shrunk inward, pushed down to sit UNDER the button */
+            left: 15%;
+            right: 15%;
+            bottom: -6px;
+            height: 60%;
+            border-radius: 100px;
+            /* COLORED CAUSTIC: blue light projected through glass onto canvas */
+            background: rgba(9, 132, 227, 0.6);
+            filter: blur(20px);
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+
+        .liquid-btn-wrap:hover::after {
+            background: rgba(9, 132, 227, 0.75);
+            filter: blur(26px);
+            bottom: -10px;
+            left: 10%;
+            right: 10%;
+        }
+
+        .liquid-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 36px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            border-radius: 100px;
+            overflow: hidden;
+            z-index: 1;
+
+            /* ── THE GRADIENT FILL ──
+     Deep blue with rich saturation, like colored glass */
+            background:
+                linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.25) 0%,
+                    transparent 40%),
+                linear-gradient(135deg,
+                    #7ac0ff 0%,
+                    #3b9bff 25%,
+                    #0b7dda 60%,
+                    #0560b8 100%);
+
+            /* ── VOLUMETRIC RIM LIGHTING ──
+     Multiple inset shadows create the feel of material thickness.
+     The top rim is VERY bright (like light hitting the glass edge).
+     The bottom has a subtle dark line (shadow side of the rim). */
+            box-shadow:
+                /* Top rim: pure white, harsh, thin — like light on a glass edge */
+                inset 0 1px 0 rgba(255, 255, 255, 1),
+                inset 0 1.5px 0 rgba(255, 255, 255, 0.7),
+                /* Top inner glow: softer, spreads further for depth */
+                inset 0 4px 8px rgba(255, 255, 255, 0.2),
+                /* Bottom rim: very subtle brightness (light wrapping around) */
+                inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+                /* Bottom inner shadow: dark, gives sense of depth/thickness */
+                inset 0 -2px 6px rgba(0, 0, 0, 0.15),
+                /* Side rim lights: subtle left/right glow */
+                inset 1px 0 3px rgba(255, 255, 255, 0.1),
+                inset -1px 0 3px rgba(255, 255, 255, 0.1);
+
+            transition:
+                transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.2s ease;
+        }
+
+        /* ── SPECULAR HIGHLIGHT ──
+   A harsh, bright white gradient on the upper half.
+   NOT subtle! This is the "wet" glossy reflection you'd see
+   on actual glass under studio lighting. */
+        .liquid-btn::before {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 8%;
+            right: 8%;
+            height: 50%;
+            background: linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.65) 0%,
+                    rgba(255, 255, 255, 0.15) 50%,
+                    transparent 100%);
+            border-radius: 100px 100px 60% 60%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* ── SHIMMER SWEEP on hover ── */
+        .liquid-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.35),
+                    transparent);
+            transform: skewX(-15deg);
+            transition: left 0.6s ease;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .liquid-btn:hover::after {
+            left: 150%;
+        }
+
+        .liquid-btn span {
+            position: relative;
+            z-index: 4;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hover: lift */
+        .liquid-btn:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 1),
+                inset 0 1.5px 0 rgba(255, 255, 255, 0.8),
+                inset 0 5px 10px rgba(255, 255, 255, 0.25),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+                inset 0 -2px 6px rgba(0, 0, 0, 0.15),
+                inset 1px 0 3px rgba(255, 255, 255, 0.1),
+                inset -1px 0 3px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Active: press into surface */
+        .liquid-btn:active {
+            transform: scale(0.97) translateY(1px);
+            box-shadow:
+                inset 0 2px 10px rgba(0, 0, 0, 0.25),
+                inset 0 1px 3px rgba(0, 0, 0, 0.2);
+            transition-duration: 0.08s;
+        }
+
+
+        /* ═══════════════════════════════════════════════════════════
+   COMPONENT 2: TRANSPARENT GLASS CARD
+   ═══════════════════════════════════════════════════════════
+   Structure:
+     .glass-card-wrap          — outer wrapper, SVG refraction filter
+       .glass-card-rim         — the THICK GLASS BORDER (separate element!)
+         .glass-card-body      — inner content area  
+           ::before            — specular highlight
+           ::after             — chromatic edge fringe (colored inset shadows)
+
+   KEY INSIGHT: The thick glass rim in the reference is NOT a CSS border.
+   It's a fully separate rendered glass element — a thick frame.
+   We simulate this with a wrapper that has its own background,
+   padding (= rim thickness), and its own rim-light shadows.
+   ═══════════════════════════════════════════════════════════ */
+
+        .glass-card-wrap {
+            position: relative;
+            filter: url(#liquid-refraction-card);
+        }
+
+        /* ── THE GLASS RIM (the thick border frame) ──
+   This is the physical glass edge. It has its OWN material properties:
+   - Semi-transparent fill (the rim glass itself)
+   - TOP rim-light (very bright inset shadow)
+   - BOTTOM rim (subtle dark)
+   - The padding creates the visible "thickness" of the glass */
+        .glass-card-rim {
+            position: relative;
+            padding: 3px;
+            /* ← This IS the glass thickness */
+            border-radius: 28px;
+
+            /* The rim glass material: semi-transparent with gradient for depth */
+            background:
+                linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.75) 0%,
+                    rgba(255, 255, 255, 0.35) 30%,
+                    rgba(230, 230, 240, 0.3) 70%,
+                    rgba(255, 255, 255, 0.45) 100%);
+
+            /* Rim volumetric lighting */
+            box-shadow:
+                /* External: ambient shadow beneath the card */
+                0 3px 6px rgba(0, 0, 0, 0.02),
+                0 10px 25px rgba(0, 0, 0, 0.05),
+                0 30px 60px rgba(0, 0, 0, 0.04),
+                0 50px 90px rgba(0, 0, 0, 0.02),
+                /* Top rim: VERY bright, harsh line of light */
+                inset 0 1.5px 0 rgba(255, 255, 255, 1),
+                inset 0 3px 0 rgba(255, 255, 255, 0.5),
+                /* Top inner glow */
+                inset 0 4px 10px rgba(255, 255, 255, 0.3),
+                /* Bottom rim: subtle light wrapping */
+                inset 0 -1px 0 rgba(255, 255, 255, 0.35),
+                inset 0 -2px 6px rgba(255, 255, 255, 0.1),
+                /* Bottom dark edge */
+                inset 0 -1px 2px rgba(0, 0, 0, 0.04),
+                /* Side rim lights */
+                inset 1px 0 2px rgba(255, 255, 255, 0.3),
+                inset -1px 0 2px rgba(255, 255, 255, 0.3);
+
+            overflow: hidden;
+            transition:
+                box-shadow 0.4s ease,
+                transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card-rim:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 3px 6px rgba(0, 0, 0, 0.02),
+                0 14px 32px rgba(0, 0, 0, 0.07),
+                0 40px 80px rgba(0, 0, 0, 0.05),
+                0 60px 100px rgba(0, 0, 0, 0.03),
+                inset 0 1.5px 0 rgba(255, 255, 255, 1),
+                inset 0 3px 0 rgba(255, 255, 255, 0.6),
+                inset 0 5px 12px rgba(255, 255, 255, 0.35),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -2px 8px rgba(255, 255, 255, 0.15),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.04),
+                inset 1px 0 2px rgba(255, 255, 255, 0.35),
+                inset -1px 0 2px rgba(255, 255, 255, 0.35);
+        }
+
+        /* ── THE CARD BODY (inner content area) ── */
+        .glass-card-body {
+            position: relative;
+            border-radius: 25px;
+            padding: 28px;
+            min-width: 280px;
+            min-height: 220px;
+            overflow: hidden;
+
+            /* Inner fill: semi-transparent white */
+            background:
+                linear-gradient(170deg,
+                    rgba(255, 255, 255, 0.3) 0%,
+                    rgba(255, 255, 255, 0.08) 40%,
+                    rgba(255, 255, 255, 0.15) 100%);
+            backdrop-filter: blur(20px) saturate(170%) brightness(1.03);
+            -webkit-backdrop-filter: blur(20px) saturate(170%) brightness(1.03);
+        }
+
+        /* ── SPECULAR HIGHLIGHT on card body ── */
+        .glass-card-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.5) 0%,
+                    rgba(255, 255, 255, 0.12) 30%,
+                    transparent 60%);
+            border-radius: 25px 25px 50% 50%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* ── CHROMATIC ABERRATION — RGB edge fringe ──
+   Colored inset shadows at the edges of the card body,
+   simulating light splitting into spectral components
+   as it passes through the thick glass at shallow angles. */
+        .glass-card-body::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 25px;
+            /* Chromatic dispersion: each color offset slightly */
+            box-shadow:
+                /* Cyan at top-left edge */
+                inset 3px 3px 15px rgba(0, 220, 255, 0.08),
+                /* Magenta at bottom-right edge */
+                inset -3px -2px 15px rgba(255, 0, 200, 0.07),
+                /* Yellow at bottom-left */
+                inset 2px -3px 12px rgba(255, 245, 0, 0.05),
+                /* Green tint top-right */
+                inset -2px 2px 12px rgba(0, 255, 170, 0.04),
+                /* Extra pink/violet bottom */
+                inset 0 -4px 20px rgba(200, 100, 255, 0.05);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card-body>* {
+            position: relative;
+            z-index: 3;
+        }
+
+        .glass-card-body h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1a1a2e;
+        }
+
+        .glass-card-body p {
+            font-size: 14px;
+            color: #5a5a7a;
+            line-height: 1.5;
+        }
+
+        .glass-card-body .card-chips {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        /* Mini glass chip inside the card */
+        .glass-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            font-size: 16px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.15) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow:
+                0 1px 3px rgba(0, 0, 0, 0.04),
+                0 3px 8px rgba(0, 0, 0, 0.03),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                inset 0 -0.5px 1px rgba(0, 0, 0, 0.03);
+        }
+
+
+        /* ═══════════════════════════════════════════════════════════
+   ALSO TEST: Red pill button (to prove caustic works per-color)
+   ═══════════════════════════════════════════════════════════ */
+        .liquid-btn-wrap--red::after {
+            background: rgba(238, 90, 36, 0.6);
+        }
+
+        .liquid-btn-wrap--red:hover::after {
+            background: rgba(238, 90, 36, 0.75);
+        }
+
+        .liquid-btn--red {
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, transparent 40%),
+                linear-gradient(135deg, #ff8a5c 0%, #ee5a24 40%, #d63031 100%);
+        }
+
+
+        /* ═══════════════════════════════════════════════════════════
+   COMPONENT 3: Transparent "Icon button" (clear glass pill)
+   ═══════════════════════════════════════════════════════════ */
+        .liquid-btn-wrap--clear::after {
+            /* Clear glass = no colored caustic, just subtle gray */
+            background: rgba(0, 0, 0, 0.06);
+            filter: blur(14px);
+        }
+
+        .liquid-btn-wrap--clear:hover::after {
+            background: rgba(0, 0, 0, 0.1);
+            filter: blur(18px);
+        }
+
+        .liquid-btn--clear {
+            color: #1a1a2e;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 100%);
+            backdrop-filter: blur(16px) saturate(150%);
+            -webkit-backdrop-filter: blur(16px) saturate(150%);
+            text-shadow: none;
+        }
+
+        .liquid-btn--clear span {
+            text-shadow: none;
+        }
+
+
+        /* ═══════════════════════════════════════════════════════════
+   Info section at top
+   ═══════════════════════════════════════════════════════════ */
+        .info {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .info h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1a1a2e;
+        }
+
+        .info p {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .info code {
+            background: rgba(0, 0, 0, 0.06);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .demo-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ════════════════════════════════════════════════════════
+     SVG FILTER DEFINITIONS — The actual optical physics
+     ════════════════════════════════════════════════════════
+     
+     Technical plan:
+     1. feTurbulence generates organic noise (fractalNoise, low frequency).
+        baseFrequency=0.01 gives large, smooth distortion waves.
+        numOctaves=2 adds just enough detail without looking noisy.
+     
+     2. feDisplacementMap uses the noise to WARP the SourceGraphic pixels.
+        scale=6 creates visible but subtle edge distortion.
+        xChannelSelector=R, yChannelSelector=G uses different noise channels
+        for X and Y displacement so the distortion isn't uniform.
+     
+     3. feGaussianBlur(0.3) softens the displaced edges slightly,
+        then feMerge composites the displaced version UNDER the original,
+        creating a "ghost edge" that simulates refraction at glass boundaries.
+     ════════════════════════════════════════════════════════ -->
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <!-- Refraction filter for buttons (smaller, lighter distortion) -->
+            <filter id="liquid-refraction" x="-10%" y="-10%" width="120%" height="120%"
+                color-interpolation-filters="sRGB">
+                <!-- Step 1: Generate displacement map from organic noise -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.02 0.015" numOctaves="2" seed="42"
+                    stitchTiles="stitch" result="noiseMap" />
+                <!-- Step 2: Displace the pixels using the noise map -->
+                <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="4" xChannelSelector="R" yChannelSelector="G"
+                    result="refracted" />
+                <!-- Step 3: Slight blur to blend the refracted edges -->
+                <feGaussianBlur in="refracted" stdDeviation="0.3" result="softRefracted" />
+                <!-- Composite: refracted ghost + crisp original -->
+                <feMerge>
+                    <feMergeNode in="softRefracted" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+
+            <!-- Refraction filter for cards (larger scale, more visible distortion) -->
+            <filter id="liquid-refraction-card" x="-8%" y="-8%" width="116%" height="116%"
+                color-interpolation-filters="sRGB">
+                <feTurbulence type="fractalNoise" baseFrequency="0.008 0.006" numOctaves="3" seed="7"
+                    stitchTiles="stitch" result="noiseMap" />
+                <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="6" xChannelSelector="R" yChannelSelector="G"
+                    result="refracted" />
+                <feGaussianBlur in="refracted" stdDeviation="0.4" result="softRefracted" />
+                <feMerge>
+                    <feMergeNode in="softRefracted" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+
+
+    <!-- ════════════════════════════════════════════
+     TEST: COLORED PILL BUTTONS
+     ════════════════════════════════════════════ -->
+    <div class="info">
+        <h1>Liquid Glass — Material Proof</h1>
+        <p>
+            Testing SVG <code>feDisplacementMap</code> refraction,
+            volumetric <code>inset</code> rim-lighting,
+            specular <code>::before</code> highlights,
+            and caustic colored glow shadows.
+        </p>
+    </div>
+
+    <div>
+        <div class="label">Colored Pill Buttons — Caustic Colored Glows</div>
+        <div class="demo-row">
+            <!-- RED BUTTON -->
+            <div class="liquid-btn-wrap liquid-btn-wrap--red">
+                <button class="liquid-btn liquid-btn--red">
+                    <span>Create workspace</span>
+                </button>
+            </div>
+
+            <!-- BLUE BUTTON (the main test) -->
+            <div class="liquid-btn-wrap">
+                <button class="liquid-btn">
+                    <span>
+                        View Projects
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round">
+                            <path d="M3 8h10M9 4l4 4-4 4" />
+                        </svg>
+                    </span>
+                </button>
+            </div>
+
+            <!-- CLEAR GLASS BUTTON -->
+            <div class="liquid-btn-wrap liquid-btn-wrap--clear">
+                <button class="liquid-btn liquid-btn--clear">
+                    <span>Icon button</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ════════════════════════════════════════════
+     TEST: TRANSPARENT GLASS CARD
+     ════════════════════════════════════════════ -->
+    <div>
+        <div class="label">Transparent Glass Card — Thick Rim + Chromatic Aberration</div>
+        <div class="demo-row">
+            <div class="glass-card-wrap">
+                <div class="glass-card-rim">
+                    <div class="glass-card-body">
+                        <h3>Switch</h3>
+                        <p>Glass material with volumetric rim lighting and chromatic edge dispersion.</p>
+                        <div class="card-chips">
+                            <div class="glass-chip">⭐</div>
+                            <div class="glass-chip">+</div>
+                            <div class="glass-chip">−</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card-wrap">
+                <div class="glass-card-rim">
+                    <div class="glass-card-body">
+                        <h3>Modal</h3>
+                        <p>Light bends and splits at the thick glass edges, creating prismatic effects.</p>
+                        <div class="card-chips">
+                            <div class="glass-chip">📋</div>
+                            <div class="glass-chip">⚙️</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
